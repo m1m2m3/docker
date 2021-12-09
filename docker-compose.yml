@@ -1,9 +1,10 @@
-master:
-  build: .
-  environment:
-    JAVA_OPTS: "-Djava.awt.headless=true"
-  ports:
-    - "50000:50000"
-    - "8080:8080"
-  volumes:
-    - /var/jenkins_home
+version: '3.3'
+
+services:
+  git:
+    image: git_sample_app_docker_compose:1.0
+    container_name: git_sample_app_docker_compose
+    build: .
+    command: git -C /build clone https://github.com/leebrandt/docker-compose-example.git
+    volumes:
+      - ./build:/build
